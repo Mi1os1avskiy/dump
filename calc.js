@@ -90,10 +90,10 @@ $(document).ready(function() {
         + $('#anglenum').children('option:selected').attr('value')*1
         + $('#backwall').children('option:selected').attr('value')*1;
 
-        if ($('#floor').is(':checked')) res += 20;
-        if ($('#ceil').is(':checked')) res += 20;
-        if ($('#back').is(':checked')) res += 25;
-        if ($('#light').is(':checked')) res += 100;
+        if ($('#floor').is(':checked')) res += $('#floor').val()*1;
+        if ($('#ceil').is(':checked')) res += $('#ceil').val()*1;
+        if ($('#back').is(':checked')) res += $('#back').val()*1;
+        if ($('#light').is(':checked')) res += $('#light').val()*1;
         
         //если наполнение всех трёх дверей одинаковое, то идёт скидка и сумма считается как за две двери
         if ($('#indoor1').children('option:selected').text() == $('#indoor2').children('option:selected').text() && $('#indoor2').children('option:selected').text() == $('#indoor3').children('option:selected').text())

@@ -21,12 +21,16 @@ $(document).ready(function() {
     
     //если шиоина шкафа 120см и меньше, то должен быть доступен выбор типа и наполнения только для двух дверей. Поэтому сразу скрываем блок "3 двери", поскольку по умолчанию выбрана ширина шкафа 90см
     $('#door3').hide();
+    
+    //получаем стоимость двух и трёх дверей и заносим в переменные, потому что дальше наш список выбора количества дверей будет формироваться только скриптом
+    let price2d = $('#numdoors').children('option:nth-child(1)').attr('value');
+    let price3d = $('#numdoors').children('option:nth-child(2)').attr('value');
 
     //здесь отслеживаем ширину шкафа, чтобы динамически отображать количество дверей
     $('#width').change(function(){
         let w = $('#width :selected').text();
-        let d2 = '<option value="0" data-num="2">2 двери</option>';
-        let d3 = '<option value="75" data-num="3">3 двери</option>';
+        let d2 = `<option value="${price2d}">2 двери</option>`;
+        let d3 = `<option value="${price3d}">3 двери</option>`;
         //если ширина от 120см и меньше, то должен быть выбор только двух дверей
         if (w <= 120) {
             $('#numdoors').html(d2);
@@ -78,17 +82,17 @@ $(document).ready(function() {
     //здесь считается итоговая сумма
     $('.calcbtn').click(function(){
         let res = combFunc(1) + combFunc(2) + combFunc(3)
-        + $('#depth').children('option:selected').attr('value')*1
-        + $('#height').children('option:selected').attr('value')*1
-        + $('#width').children('option:selected').attr('value')*1
-        + $('#numdoors').children('option:selected').attr('value')*1
-        + $('#indoor1').children('option:selected').attr('value')*1
-        + $('#indoor2').children('option:selected').attr('value')*1
-        + $('#indoor3').children('option:selected').attr('value')*1
-        + $('#boxes').children('option:selected').attr('value')*1
-        + $('#angle').children('option:selected').attr('value')*1
-        + $('#anglenum').children('option:selected').attr('value')*1
-        + $('#backwall').children('option:selected').attr('value')*1;
+            + $('#depth').children('option:selected').attr('value')*1
+            + $('#height').children('option:selected').attr('value')*1
+            + $('#width').children('option:selected').attr('value')*1
+            + $('#numdoors').children('option:selected').attr('value')*1
+            + $('#indoor1').children('option:selected').attr('value')*1
+            + $('#indoor2').children('option:selected').attr('value')*1
+            + $('#indoor3').children('option:selected').attr('value')*1
+            + $('#boxes').children('option:selected').attr('value')*1
+            + $('#angle').children('option:selected').attr('value')*1
+            + $('#anglenum').children('option:selected').attr('value')*1
+            + $('#backwall').children('option:selected').attr('value')*1;
 
         if ($('#floor').is(':checked')) res += $('#floor').val()*1;
         if ($('#ceil').is(':checked')) res += $('#ceil').val()*1;
@@ -96,8 +100,7 @@ $(document).ready(function() {
         if ($('#light').is(':checked')) res += $('#light').val()*1;
         
         //если наполнение всех трёх дверей одинаковое, то идёт скидка и сумма считается как за две двери
-        if ($('#indoor1').children('option:selected').text() == $('#indoor2').children('option:selected').text() && $('#indoor2').children('option:selected').text() == $('#indoor3').children('option:selected').text())
-        {
+        if ($('#indoor1').children('option:selected').text() == $('#indoor2').children('option:selected').text() && $('#indoor2').children('option:selected').text() == $('#indoor3').children('option:selected').text()) {
             res -= $('#indoor3').children('option:selected').attr('value')*1;
         }
         

@@ -1,0 +1,297 @@
+<div class="col-md-8">
+    <div class="main-column calculator">
+        <div class="row padbot">
+    		<h4>Расчёт стоимости шкафа по выбранным параметрам</h4>
+    		<h5>(стоимость указана в белорусских рублях)</h5>
+		</div>
+		<hr align="left">
+        <div class="row padbot">
+            <div id="kurs" value="[[*kurs]]" style="display: none;"></div>
+			<div class="col-10 col-md-4">
+			    <div class="bold">Глубина шкафа, см:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="depth" type="number" id="depth">
+                    <option value="-30">30</option>
+                    <option value="-20">40</option>
+                    <option value="-10">50</option>
+                    <option value="0">60</option>
+                    <option value="20">70</option>
+                    <option value="40">80</option>
+                    <option value="60">90</option>
+                    <option value="80">100</option>
+                </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Высота шкафа, см:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="height" type="number" id="height">
+                    <option value="0">100</option>
+                    <option value="0">110</option>
+                    <option value="0">120</option>
+                    <option value="0">130</option>
+                    <option value="0">140</option>
+                    <option value="0">150</option>
+                    <option value="0">160</option>
+                    <option value="0">170</option>
+                    <option value="0">180</option>
+                    <option value="0">190</option>
+                    <option value="0">200</option>
+                    <option value="0">210</option>
+                    <option value="0">220</option>
+                    <option value="0">230</option>
+                    <option value="0">240</option>
+                    <option value="0">250</option>
+                    <option value="20">260</option>
+                    <option value="40">270</option>
+                    <option value="60">280</option>
+                    <option value="80">290</option>
+                    <option value="90">300</option>
+                </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Ширина шкафа, см:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="width" type="number" id="width">
+                    <option value="300">90</option>
+                    <option value="310">100</option>
+                    <option value="320">110</option>
+                    <option value="330">120</option>
+                    <option value="340">130</option>
+                    <option value="350">140</option>
+                    <option value="360">150</option>
+                    <option value="400">160</option>
+                    <option value="410">170</option>
+                    <option value="420">180</option>
+                    <option value="430">190</option>
+                    <option value="440">200</option>
+                    <option value="450">210</option>
+                    <option value="460">220</option>
+                    <option value="470">230</option>
+                    <option value="480">240</option>
+                    <option value="490">250</option>
+                    <option value="500">260</option>
+                    <option value="525">270</option>
+                    <option value="550">280</option>
+                    <option value="600">290</option>
+                    <option value="650">300</option>
+                    <option value="700">310</option>
+                    <option value="750">320</option>
+                    <option value="800">330</option>
+                    <option value="850">340</option>
+                    <option value="900">350</option>
+                </select>
+			</div>
+        </div>
+        <hr align="left">
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Количество дверей:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="numdoors" type="text" id="numdoors">
+                    <option value="0" data-num="2">2 двери</option>
+			    </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Дверь №1:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="doortype" type="text" id="doortype1">
+                    <option value="0">не комбинированные</option>
+                    <option value="15">деление вертикальное</option>
+                    <option value="15">деление горизонтальное</option>
+                </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Наполнение:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="indoor" type="text" id="indoor1">
+                    <option value="0">ДСП</option>
+                    <option value="0">зеркало</option>
+                    <option value="100">пескоструй</option>
+                    <option value="150">фотопечать</option>
+                    <option value="100">лакобель</option>
+                    <option value="80">лакомат</option>
+                </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Дверь №2:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="doortype" type="text" id="doortype2">
+                    <option value="0">не комбинированные</option>
+                    <option value="15">деление вертикальное</option>
+                    <option value="15">деление горизонтальное</option>
+                </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Наполнение:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="indoor" type="text" id="indoor2">
+                    <option value="0">ДСП</option>
+                    <option value="0">зеркало</option>
+                    <option value="100">пескоструй</option>
+                    <option value="150">фотопечать</option>
+                    <option value="100">лакобель</option>
+                    <option value="80">лакомат</option>
+                </select>
+			</div>
+        </div>
+        <div id="door3">
+            <div class="row padbot">
+    			<div class="col-10 col-md-4">
+    			    <div class="bold">Дверь №3:</div>
+    			</div>
+    			<div class="col-10 col-md-8">
+    			    <select name="doortype" type="text" id="doortype3">
+                        <option value="0">не комбинированные</option>
+                        <option value="15">деление вертикальное</option>
+                        <option value="15">деление горизонтальное</option>
+                    </select>
+    			</div>
+            </div>
+            <div class="row padbot">
+    			<div class="col-10 col-md-4">
+    			    <div class="bold">Наполнение:</div>
+    			</div>
+    			<div class="col-10 col-md-8">
+    			    <select name="indoor" type="text" id="indoor3">
+                        <option value="0">ДСП</option>
+                        <option value="0">зеркало</option>
+                        <option value="100">пескоструй</option>
+                        <option value="150">фотопечать</option>
+                        <option value="100">лакобель</option>
+                        <option value="80">лакомат</option>
+                    </select>
+    			</div>
+            </div>
+        </div>
+        <hr align="left">
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Выдвижные ящики:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="boxes" type="text" id="boxes">
+                    <option value="0">нет</option>
+                    <option value="25">1</option>
+                    <option value="50">2</option>
+                    <option value="75">3</option>
+                    <option value="100">4</option>
+			    </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Угловые открытые полки:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="angle" type="text" id="angle">
+                    <option value="0">нет</option>
+                    <option value="15">левая</option>
+                    <option value="15">правая</option>
+                    <option value="30">обе</option>
+			    </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Количество полок:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="anglenum" type="text" id="anglenum">
+			        <option value="0">0</option>
+			        <option value="7">1</option>
+                    <option value="14">2</option>
+                    <option value="21">3</option>
+                    <option value="28">4</option>
+                    <option value="35">5</option>
+                    <option value="42" data-hide hidden>6</option>
+                    <option value="49" data-hide hidden>7</option>
+                    <option value="56" data-hide hidden>8</option>
+                    <option value="63" data-hide hidden>9</option>
+                    <option value="70" data-hide hidden>10</option>
+			    </select>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Боковые стенки:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <select name="backwall" type="text" id="backwall">
+                    <option value="0">нет</option>
+                    <option value="45">левая</option>
+                    <option value="45">правая</option>
+                    <option value="90">обе</option>
+			    </select>
+			</div>
+        </div>
+        <hr align="left">
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Пол:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <label class="checkbox style-c">
+                    <input type="checkbox" id="floor" value="20">
+                    <div class="checkbox__checkmark"></div>
+                </label>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Потолок:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <label class="checkbox style-c">
+                    <input type="checkbox" id="ceil" value="20">
+                    <div class="checkbox__checkmark"></div>
+                </label>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Задняя стенка:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <label class="checkbox style-c">
+                    <input type="checkbox" id="back" value="25">
+                    <div class="checkbox__checkmark"></div>
+                </label>
+			</div>
+        </div>
+        <div class="row padbot">
+			<div class="col-10 col-md-4">
+			    <div class="bold">Подсветка:</div>
+			</div>
+			<div class="col-10 col-md-8">
+			    <label class="checkbox style-c">
+                    <input type="checkbox" id="light" value="100">
+                    <div class="checkbox__checkmark"></div>
+                </label>
+			</div>
+        </div>
+        <button class="calcbtn" name="submit" value="">РАССЧИТАТЬ СТОИМОСТЬ</button>
+        <hr align="left">
+        <div class="result"></div>
+    </div>
+    <div class="push30"></div>
+</div>

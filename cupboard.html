@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form>
+        <div>Ширина шкафа:</div>
+        <div>
+            <select id="width">
+                <option hidden></option>
+                <option name="90">90</option>
+                <option name="120">120</option>
+                <option name="150">150</option>
+                <option name="180">180</option>
+                <option name="210">210</option>
+                <option name="240">240</option>
+            </select>
+        </div>
+        <div id="doors" class="none">
+            <div>Количество дверей:</div>
+            <div>
+                <select id="numdoors"></select>
+            </div>
+        </div>
+    </form>
+	<div class='imgBlock'>
+		<img src='cupboard.png'>
+	</div>
+<div>
+
+<script>
+$(document).ready(function(){
+    $('#width').change(function(){
+        $('#doors').slideDown(1000);
+        let v = $('#width :selected').val();
+        if (v <= 120) {
+            $('#numdoors').html('<option>2 двери</option>');
+			$('.imgBlock img').attr('src', 'shkaf2.jpg');
+        } else if (v >= 210) {
+            $('#numdoors').html('<option>3 двери</option>');
+			$('.imgBlock img').attr('src', 'shkaf3.png');
+        } else {
+            $('#numdoors').html('<option>2 двери</option><option name="3d">3 двери</option>');
+			$('.imgBlock img').attr('src', 'shkaf2.jpg');
+			$('#numdoors').change(function() {
+				let d = $('#numdoors :selected').val();
+				if (d == '2 двери') {
+					$('.imgBlock img').attr('src', 'shkaf2.jpg');
+				}
+				else if (d == '3 двери'){
+					$('.imgBlock img').attr('src', 'shkaf3.png');
+				}
+			});
+		}
+    });
+});
+</script>
+
+<!-- <script>
+    $(document).ready(function(){
+        $('#width').on('change', function(){
+            $('#doors').slideDown(1000);
+            if ($(this).val() <= 120 ) {
+                $('#numdoors option').remove();
+                $('#numdoors').append('<option>2 двери</option>');
+            }
+            else if ($(this).val() >= 210 ) {
+                $('#numdoors option').remove();
+                $('#numdoors').append('<option>3 двери</option>');
+            }
+            else {
+                $('#numdoors option').remove();
+                $('#numdoors').append('<option>2 двери</option><option name="3d">3 двери</option>');
+            }
+        });
+    });
+</script> -->
+
+<style>
+	html {font-family: "Roboto", sans-serif; font-size: 20px; font-weight: 400;}
+	form {display: inline-block; width: 200px; float: left; padding: 10px;}
+	form div {margin: 7px 0;}
+    .none {display: none;}
+    .container {margin: 20px;}
+    .container > div {width: 50%;}
+    .container select {width: 120px; padding: 5px; margin-bottom: 5px; border-radius: 5px;}
+    #images {display: inline-block; width: 200px;}
+	.imgBlock {display: inline-block;}
+	.imgBlock img {max-height: 200px;}
+</style>
+
+</body>

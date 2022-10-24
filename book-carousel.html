@@ -1,0 +1,137 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/flickity@2.3.0/dist/flickity.min.css"/>
+</head>
+
+<div class='container'>
+    <h2 style="text-align: center;">Галерея</h2>
+
+    <div class='bigpict'>
+        <img src='https://www.meme-arsenal.com/memes/611801734bfe22e02aa5bae84ef46d64.jpg'>
+    </div>
+
+    <div class='button'>Показать</div>
+
+    <div class="carousel" data-flickity='{"groupCells": true, "freeScroll": true, "wrapAround": true}'>
+      <div class="carousel-cell">
+          <a href='https://marieclaire.ua/wp-content/uploads/2019/08/MyCollages-5-1.jpg'>
+              <img src="https://marieclaire.ua/wp-content/uploads/2019/08/MyCollages-5-1.jpg">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://img4.labirint.ru/rc/ce763b78539c127b107473f4f0a81413/363x561q80/books86/857822/cover.jpg?1651677937'>
+              <img src="https://img4.labirint.ru/rc/ce763b78539c127b107473f4f0a81413/363x561q80/books86/857822/cover.jpg?1651677937">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://img4.labirint.ru/rc/f8ab757f3967e9a2665cdfd28773ae6e/363x561q80/books84/837796/cover.jpg?1639488388'>
+              <img src="https://img4.labirint.ru/rc/f8ab757f3967e9a2665cdfd28773ae6e/363x561q80/books84/837796/cover.jpg?1639488388">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://media.proglib.io/posts/2020/03/18/5d57364e62beb96aef9753b383eebfdd.jpg'>
+              <img src="https://media.proglib.io/posts/2020/03/18/5d57364e62beb96aef9753b383eebfdd.jpg">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://img3.labirint.ru/rc/ed3b934a65df972acbd899be8874c0fd/363x561q80/books80/790771/cover.jpg?1613492720'>
+              <img src="https://img3.labirint.ru/rc/ed3b934a65df972acbd899be8874c0fd/363x561q80/books80/790771/cover.jpg?1613492720">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://cdn-s-static.arzamas.academy/uploads/ckeditor/pictures/5921/content_cover1.jpg'>
+              <img src="https://cdn-s-static.arzamas.academy/uploads/ckeditor/pictures/5921/content_cover1.jpg">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://anylang.net/sites/default/files/styles/responsive_grid/public/covers/wolf-unter-wolfen.jpg?itok=tF90pWhF'>
+              <img src="https://anylang.net/sites/default/files/styles/responsive_grid/public/covers/wolf-unter-wolfen.jpg?itok=tF90pWhF">
+          </a>
+      </div>
+      <div class="carousel-cell">
+          <a href='https://cv8.litres.ru/pub/c/elektronnaya-kniga/cover_330/63083183-zigmund-freyd-psihopatologiya-obydennoy-zhizni-63083183.jpg'>
+              <img src="https://cv8.litres.ru/pub/c/elektronnaya-kniga/cover_330/63083183-zigmund-freyd-psihopatologiya-obydennoy-zhizni-63083183.jpg">
+          </a>
+      </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        margin: 20px auto;
+        width: 50%;
+        border: 1px solid grey;
+    }
+    .bigpict {
+        width: 300px;
+		height: 430px;
+        border: 1px solid grey;
+        margin: 10px auto;
+    }
+    .bigpict img {
+        width: 100%;
+        height: inherit;
+    }
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        height: 30px;
+        width: 200px;
+        background-color: lightblue;
+        border: 2px solid grey;
+        border-radius: 10px;
+        opacity: 0.7;
+    }
+    .button:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+    .carousel {
+        margin: 10px;
+    }
+	.carousel img {
+		width: 150px;
+		height: 215px;
+		object-fit: cover;
+        box-sizing: border-box;
+	}
+	.carousel-cell {
+        display: border-box;
+		margin: 5px;
+	}
+</style>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.carousel').hide();
+
+    const img = 'https://www.meme-arsenal.com/memes/611801734bfe22e02aa5bae84ef46d64.jpg';
+    $('.button').click(function() {
+        $('.carousel').slideToggle(500);
+        if ($('.button').text() == 'Показать') {
+            $('.button').text('Скрыть');
+        } else {
+            $('.button').text('Показать');
+            if ($('.bigpict img').attr('src') !== img) {
+                $('.bigpict img').hide().attr('src', img).fadeIn(500);
+            }
+        }
+    });
+
+    $('.carousel-cell a').click(function(e) {
+        if ($('.bigpict img').attr('src') !== $(this).attr('href')) {
+            $('.bigpict img').hide().attr('src', $(this).attr('href')).fadeIn(1000);
+        }
+        e.preventDefault();
+    });
+
+    $('.carousel-cell a img').click(function() {
+        $('.carousel-cell a img').fadeTo(0, 1).css('border', 'none');
+        $(this).fadeTo(200, 0.6).css('border', '3px solid black');
+    });
+});
+</script>

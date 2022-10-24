@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div id="messages" class="hide" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <div id="messages_content"></div>
+            </div>
+
+            <h1 class="header" title="заголовок" data-name="заголовок" data-id="10" id="top">Test page</h1>
+            <br>
+            <ul>
+                <li>первый пункт</li>
+                <li><span>второй пункт</span></li>
+                <li>третий пункт</li>
+                <li>четвёртый пункт</li>
+            </ul>
+            <br>
+            <div>
+                <p title="some-title">Paragraph</p>
+            </div>
+            <div class='sometext'>Текст для замены</div>
+            <br>
+            <table style="border: 1px solid black">
+                <tr>
+                    <td>1 cell</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>4 cell</td>
+                </tr>
+            </table>
+            <br>
+            <form id="form" method="post">
+                    <input class='name' placeholder='Your name'></input>
+                <p>Welcome<span id='userName'></span>!</p>
+                <textarea name="area"></textarea>
+                <div name='output'></div>
+                <button class="btn btn-default" type="submit">Submit</button>
+            </form>
+            <br>
+            <h4>Нажми на меня</h4>
+            <br>
+            <div id="line" style="display: block; background: pink; border-radius: 50px; width: 400px; height: 50px;"></div>
+            <br>
+            <h2>Скрытый блок</h2>
+            <div style='display: none;' class='hidblock'>
+                <p>Здесь текст</p>
+                <p>И здесть текст</p>
+                <p>И ещё здесь</p>
+            </div>
+            <br>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Tool_logo_2006.svg/1200px-Tool_logo_2006.svg.png'>
+        </div>
+        <hr>
+        <h1>Header 1</h1>
+        <p>Some text</p>
+        <h2>Header 2</h2>
+        <p>Some else text</p>
+        <h3>Header 3</h3>
+        <p>Some text</p>
+        <h4>Header 4</h4>
+        <p>Some else text</p>
+
+        <a href="#top" id="arrow">
+            <img src="up.png" style="width: 50px; float: right; position: absolute; ">
+        </a>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script>
+            $('#form').submit(function(e) {
+                $('#messages').removeClass('hide').addClass('alert alert-success alert-dismissible').slideDown().show();
+                $('#messages_content').html('<h4>Форма отправлена</h4><p>Мы перезвоним</p>');
+                $('#modal').modal('show');
+                e.preventDefault();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                $('button.btn').parent().css('border', 'solid 3px red')
+                $('li:eq(2)').css('border', 'solid 2px blue')   //(:first, :last, even, odd, eq())
+                $('li:even').addClass('green')
+
+                // $('li:even').click(function(){
+                //     $(this).toggleClass('green yellow')
+                // });
+                $('li:even').on('click', function(){    //аналог, но лучше использовать его, работает также с динамическими элементами
+                    $(this).toggleClass('green yellow')
+                });
+
+                $('li:contains("четвёртый")').css('font-weight', '700')
+                $('ul li:has("span")').css({    //можно передавать объекты
+                    'font-style':'italic',
+                    'font-size':'20px',
+                    'padding':'5px'
+                });
+                $('form:has(button)').css('background', 'grey')
+                $('table tr td:parent').css('background', 'lightblue')  //красит только те ячейки, в которых есть содержимое
+                $('table tr td:empty').css('background', 'lightgreen')  //красит только пустые
+                $('h3').click(function(){
+                    alert('click')
+                });
+                $('.container img').addClass('half')
+                $('p').dblclick(function(){
+                    $(this).toggleClass('green')    //on-off class
+                });
+                $('button').mouseenter(function(){     //срабатывает только при входе мышки
+                    $(this).toggleClass('yellow')
+                });
+                $(function(){
+                    let pressme = $('h4');  //срабатывает и при входе, и при выходе
+                    pressme.mouseover(function() {
+                        $(this).addClass('red');
+                    })
+                    pressme.mouseout(function() {
+                        $(this).removeClass('red');
+                    })
+                    //аналог через hover:
+                    //pressme.hover(
+                    //    function() {
+                    //    $(this).addClass('red');
+                    //},  function() {
+                    //    $(this).removeClass('red');
+                    //});
+                });
+                //mousemove, mouseup (отпускание левой кнопки)
+
+                $('input').change(function(){
+                    $('#userName').text(', ' + $(this).val());
+                });
+                $('textarea[name="area"]').keyup(function(){    //keydown, keypress
+                    // let value = $(this).val();
+                    // $('div[name="output"]').val(value);
+                    $('div[name="output"]').text($(this).val())
+                });
+                $('li:first').delay(2000).hide(2000).show(2000);
+                //$('li:first').delay(2000, function(){...})    //вторым аргументом можно вызывать функции
+                $('h4').on('click', function(){
+                    $(this).hide().text('Зря, больше не нажимай').show(1000);
+                });
+
+                $('#line').animate({'width': '50px', 'margin':'20px'}, 3000, function(){
+                    alert('получился кружочек');
+                });
+                $('button').delay(2000).slideUp(1000).slideDown(1000);
+                $('.container img').click(function(){
+                    $(this).fadeOut(500, function(){
+                        $(this).attr('src', 'https://townsquare.media/site/366/files/2019/04/56174975_2187095201350937_6170095449874104320_n.jpg?w=960&q=75').fadeIn(500);  //add or change attr
+                    });
+                });
+                $('h1').fadeTo(3000, 0.2).fadeTo(2000, 1);  //меняем прозрачность до 0.2 и затем возвращаем до 1. Можно третьим аргументом давать функцию
+                $('.sometext').click(function(){
+                    //$(this).text('Изменённый текст');    //не понимает теги html
+                    //let txt = $(this).text('');   //записываем в переменную нынешнее значение
+                    $(this).html('<b>Изменённый текст</b>');
+                    //let code $(this).html(''); //получаем весь html-код выбранного блока
+                    //append - добавить текст в конец блока
+                    //prepend - добавить в начало блока
+                    //before - добавить код до выбранного блока
+                    //after - добавить код после выбранного блока
+                    //wrap('<div class="container"></div>') - обернуть в div с классом container
+                    //unwrap - убрать обёртку
+                    //empty - удаляется содежимое тегов
+                    //clone - копирует блок в переменную
+                    //remove - удаляет весь блок, но его содержимое можно записать в переменную
+                });
+
+                let id = $('h3').data('id');    //10
+                let name = $('h3').data('name');    //заголовок
+                $('h3').attr('data-id') //analog
+                //$('h3').attr('data-id', 20)   //заменяем значение атрибута
+                //$('h3').removeAttr('data-id');    //удалить атрибут
+
+                $('p[title="some-title"]').css({'color':'orange'})
+
+                $('h1, h2, h3') //multiple selectors
+
+                $('img[alt]')   //проверяет img на наличие атрибута alt
+
+                $(window).resize(function(){    //scroll
+                    let width = $(this).width();
+                    console.log(width);
+                });
+
+                $('#line').click(function(){
+                    $('ul').append('<li>Пятый пункт</li>')
+                    $('ul li:nth-child(2)').after('<li>Дополнительный пункт</li>')
+                    console.log($('ul').html());
+                });
+
+                $('ul + li')    //выбираем только первый пункт
+                $('li:not(ul + li)')    //все, кроме первого
+
+                function widthAndHeight(element) {  //передаём класс элемента, размеры которого хотим получить
+                    let className = '.' + element;  //добавляем точку, чтобы получился селектор
+                    let w = $(className).width();   //присваиваем переменным значения ширины и высоты
+                    let h = $(className).height();
+                    $('h4').text('Ширина: ' + w + '; Высота: ' + h);    //у тега h4 меняем текст на новый
+                }
+                //widthAndHeight('btn');  //вызываем функцию
+
+                function elementOut (element, time) {   //функция исчезновения элемента
+                    if (time < 1000 || time > 5000 || isNaN(time)) {    //проверяем условие, чтобы время было от 1 до 5 секунд и являлось числом
+                        return false;
+                    }
+                    else {
+                        let className = "." + element;
+                        $(className).fadeOut(time);
+                    }
+                }
+                elementOut('h4', 6000); //функция вернёт false, поскольку время больше 5 секунд
+
+                function changeAttr (element, newAttr, newValue) {  //функция замены атрибута
+                    let className = "." + element;
+                    $(className).attr(newAttr, newValue);
+                }
+                changeAttr('header', 'title', 'Новый заголовок');   //ищем заголовок с классом header и меняем значение атрибута title
+
+                alert($('div').length); //узнаём количество дивов на странице
+                for (let i=0; i<$('li').length; i++) {
+                    //  любой код прогоняем через цикл
+                }
+
+                //$('form').submit(function(){
+                //    alert('Submitting');
+                //});
+
+                //События для форм:
+                //submit - при отправке формы
+                //focus - поле формы в фокусе
+                //blur - поле формы не в фокусе
+                //change - изменение поля
+                //reset - сброс формы (нужна кнопка reset)
+
+                //выбор полей формы:
+                //$('.form :checkbox:checked');
+                //$(':radio');
+                //$(':submit');
+                //$(':reset');
+                //$(':file');
+                //$(':button');
+                //$(':text');
+                //$(':password');
+                //$(':input');
+
+                //$('.form #select1 :selected').remove(); - удаляет выбрбанный пункт в поле select с id select1
+                //$('.form #select1 :selected').val();  - получает значение value выбранного селекта
+
+                //Валидация формы:
+                $('#form').submit(function(e) {
+                    if ($('.name').val() == '') {
+                        e.preventDefault();
+                        alert('Надо имя');
+                    }
+                });
+
+                $('.button, .arrow').click(function(e) {    //отменяем стандартное действие для классов button и arrow
+                    e.preventDefault();
+                });
+                //аналог:
+                $('.button, .arrow').click(function() {    //отменяем стандартное действие для классов button и arrow
+                    //здесь прописываем что надо сделать, потому что дальше выходим из функции
+                    return false;   //отменяем стандарное действие и выходим из функции
+                });
+
+                $('.btn').click(function(e) {
+                    let answer = confirm('Уверен?');
+                    if (!answer){
+                        e.preventDefault();
+                    }
+                });
+
+                $('h2').click(function() {
+                    $('.hidblock').slideToggle(1000);
+                });
+
+                $("a[href='#top']").click(function() {
+                  $("html, body").animate({ scrollTop: 0 }, "slow");
+                  return false;
+                });
+
+                window.location.href = "https://enemer.by/spasibo-za-zayavku/"; //переход на другую страницу
+            });
+        </script>
+
+        <style>
+            .red {color: red;}
+            .green {color: green;}
+            .yellow {color: yellow;}
+            .half {width: 50%;}
+            #arrow {position: fixed; top: 90%; left: 90%; opacity: 0.8;}
+            #arrow:hover {opacity: 1;}
+            #arrow img {background: aquamarine; border-radius: 50px;}
+        </style>
+    </body>
+</html>
